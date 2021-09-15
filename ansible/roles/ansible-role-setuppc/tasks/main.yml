@@ -48,9 +48,23 @@
 - name: Set desktop background
   ansible.builtin.command: gsettings set org.gnome.desktop.background picture-uri 'file:///tmp/Play1.jpg'
 
+- name: Install resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    mode: 0444
+    backup: yes
+
+
 #- name: Download Google Chrome
 #  get_url:
 #    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 #    dest: /root/Downloads/google-chrome-stable_current_amd64.deb
 
-    
+#- name: Install resolv.conf
+#  template:
+#    src: resolv.conf.j2
+#    dest: /etc/resolv.conf
+#    mode: 0444
+#    backup: yes
+#  when: dhclient.rc == 1    
