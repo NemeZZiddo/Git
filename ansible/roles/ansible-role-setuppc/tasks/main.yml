@@ -1,0 +1,56 @@
+---
+- name: Add the user
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    comment: "{{ item.comment }}"
+    uid: "{{ item.uid }}"
+#    group: "{{ user.group }}"
+  with_items: "{{ user }}"
+
+- name: Enable ssh-key auth
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?PubkeyAuthentication'
+    line: 'PubkeyAuthentication yes' 
+      
+- name: Restarting sshd service
+  ansible.builtin.service:
+    name: sshd
+    state: restarted
+
+- name: Disable password auth
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^#?PasswordAuthentication'
+    line: 'PasswordAuthentication no'      
+
+- name: Set timezone to Europe/Kiev
+  timezone:
+    name: Europe/Kiev
+      
+#- name: install wget mc keepass2
+#   become: true
+#   become_user: root
+#   apt:
+#     state: present
+#     name:
+#     - wget
+#     - mc
+#     - keepass2
+
+- name: Copy desktop background
+  become_user: "{{ item.name }}" 
+  copy:
+    src: /etc/ansible/roles/ansible-role-setuppc/templates/Play1.jpg
+    dest: /tmp/Play1.jpg
+  with_items: "{{ user }}"
+
+- name: Set desktop background
+  ansible.builtin.command: gsettings set org.gnome.desktop.background picture-uri 'file:///tmp/Play1.jpg'
+
+#- name: Download Google Chrome
+#  get_url:
+#    url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+#    dest: /root/Downloads/google-chrome-stable_current_amd64.deb
+
+    

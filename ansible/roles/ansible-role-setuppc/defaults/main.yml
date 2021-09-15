@@ -1,0 +1,13 @@
+user:
+  - name: test
+    mail: test@test.com
+    pwd: 1234567
+    comment: John Doe
+    group: admin2
+    uid: 1004
+  - name: test2
+    mail: test2@test.com
+    comment: John2 Doe
+    groupe: admin2
+    uid: 1005
+
