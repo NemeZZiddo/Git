@@ -8,9 +8,6 @@ user:
   - name: test2
     mail: test2@test.com
     comment: John2 Doe
-    groupe: admin2
+    group: admin2
     uid: 1005
-# Config Network
-ns1: 8.8.8.8
-ns2: 8.8.4.4
 
