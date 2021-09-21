@@ -65,10 +65,10 @@
 - name: Install resolv.conf
   template:
 #    become: yes
-    src: /templates/resolv.conf.j2
+    src: resolv.conf.j2
     dest: /etc/resolv.conf
-    owner: root
-    group: root
+#    owner: root
+#    group: root
     mode: 0644
     backup: yes
 #  when: dhclient.rc == 1    

@@ -2,7 +2,13 @@
 - hosts: pc1
   roles:
     - ansible-role-setuppc
+#  vars:
+#    ns1
+#    ns2
 
 - hosts: pc2
   roles:
     - ansible-role-phpstorm  
+#  vars:
+#    ns1: '8.8.8.8'
+#    ns2: '8.8.4.4'
