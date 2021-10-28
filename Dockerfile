@@ -1,5 +1,1 @@
 FROM ubuntu
-
-COPY . /opt
-
-###
