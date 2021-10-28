@@ -1,4 +1,5 @@
 FROM ubuntu
 
-#######
-kkkk
+COPY . /opt
+
+###
